@@ -163,4 +163,3 @@ def spacing_text(text):
     Perform paranoid text spacing on text. An alias of `spacing()`.
     """
     return spacing(text)
-

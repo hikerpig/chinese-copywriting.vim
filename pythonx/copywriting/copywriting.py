@@ -1,3 +1,6 @@
+"""
+vim 与文字处理功能的胶水模块，调用 pangu.py 进行格式化
+"""
 import vim
 
 from copywriting.pangu import spacing_text
