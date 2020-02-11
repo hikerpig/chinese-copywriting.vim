@@ -21,7 +21,21 @@ Plug "hikerpig/chinese-copywriting.vim"
 
 ### `:CopywritingFormat` command
 
-手动执行该命令，将当前文件进行格式化。如果处于 visual 模式，将只格式化选中部分。
+手动执行该命令，将当前文件进行格式化。
+
+```viml
+:CopywritingFormat
+```
+
+可以传入 range：
+
+```viml
+" visual mode
+:'<,'>CopywritingFormat
+
+" 或手动指定 range
+:1,10CopywritingFormat
+```
 
 ## 参考
 

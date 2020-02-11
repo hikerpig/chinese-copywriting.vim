@@ -7,13 +7,26 @@ from copywriting.pangu import spacing_text
 from copywriting.debug import debug
 
 
-def copywriting_format():
+def copywriting_format(line_start, line_end):
     """replace  current buffer range with pangu.spacing_text
     """
-    buffer_range = vim.current.range
+    buffer = vim.current.buffer
+    max_end = len(buffer) - 1
+
+    debug("echo '{0}'".format(line_start))
+    if line_start == -1:
+        start = 0
+        end = max_end
+    else:
+        start = max(int(line_start) - 1, 0)
+        end = min(max_end, max(int(line_end) - 1, 0))
+
+    end = max(end, start)
+
+    buffer_range = buffer[start:end+1]
     text = "\n".join(str(line) for line in buffer_range)
     result_text = spacing_text(text)
-    # debug(result_text)
+    result_lines = result_text.splitlines()
 
-    # vim.eval("echo '{0}'".format(result_text))
-    vim.current.range[:] = result_text.split("\n")
+    vim.current.buffer[start:end+1] = result_lines
+
