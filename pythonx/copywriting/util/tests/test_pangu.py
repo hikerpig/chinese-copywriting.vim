@@ -1,17 +1,9 @@
 # coding: utf-8
 
-import unittest
-
-import pangu
-
-
-class PanguTest(unittest.TestCase):
-    pass
+from . import PanguTest, format, pangu
 
 
 class SpacingTest(PanguTest):
-    # 略過
-
     def test_skip_underscore(self):
         self.assertEqual(pangu.spacing('前面_後面'), '前面_後面')
         self.assertEqual(pangu.spacing('前面 _ 後面'), '前面 _ 後面')

@@ -8,7 +8,7 @@ import os
 import re
 import sys
 
-__version__ = '4.0.6.1'
+# __version__ = '4.0.6.1' # based on pangu version
 __all__ = ['spacing_text', 'spacing']
 
 CJK = r'\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30fa\u30fc-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff'
@@ -93,7 +93,7 @@ def convert_to_fullwidth(symbols):
     return symbols.strip()
 
 
-def spacing(text):
+def spacing(text, strip=True):
     """
     Perform paranoid text spacing on text.
     """
@@ -121,7 +121,7 @@ def spacing(text):
 
     new_text = CJK_QUOTE.sub(r'\1 \2', new_text)
     new_text = QUOTE_CJK.sub(r'\1 \2', new_text)
-    new_text = FIX_QUOTE_ANY_QUOTE.sub(r'\1\3\5', new_text)
+    new_text = FIX_QUOTE_ANY_QUOTE.sub(r'\1\3\5', new_text)  # TODO: 造成 code block 错误 ?
 
     new_text = CJK_SINGLE_QUOTE_BUT_POSSESSIVE.sub(r'\1 \2', new_text)
     new_text = SINGLE_QUOTE_CJK.sub(r'\1 \2', new_text)
@@ -155,11 +155,13 @@ def spacing(text):
 
     new_text = MIDDLE_DOT.sub('・', new_text)
 
-    return new_text.strip()
+    if strip:
+        new_text = new_text.strip()
+    return new_text
 
 
 def spacing_text(text):
     """
-    Perform paranoid text spacing on text. An alias of `spacing()`.
+    Perform paranoid text spacing on text.
     """
-    return spacing(text)
+    return spacing(text, strip=False)
