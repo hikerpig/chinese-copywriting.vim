@@ -1,11 +1,11 @@
-" if exists("b:did_plugin_copywriting")
-"   finish
-" endif
+if exists("b:did_plugin_copywriting")
+  finish
+endif
 
 let b:did_plugin_copywriting=1
 
 py3 import vim
-py3 from copywriting import copywriting_format
+py3 from copywriting.vim_entry import copywriting_format
 
 function copywriting#format() range
   let is_visual_mode = a:firstline == line("'<") && a:lastline == line("'>")
