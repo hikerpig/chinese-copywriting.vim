@@ -1,6 +1,6 @@
-" if exists("b:did_plugin_copywriting")
-"   finish
-" endif
+if exists("b:did_plugin_copywriting")
+  finish
+endif
 
 let b:did_plugin_copywriting=1
 
